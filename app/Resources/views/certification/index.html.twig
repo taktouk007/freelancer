@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Certifications list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for certification in certifications %}
+            <tr>
+                <td><a href="{{ path('certification_show', { 'id': certification.id }) }}">{{ certification.id }}</a></td>
+                <td>{{ certification.name }}</td>
+                <td>{{ certification.designation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('certification_show', { 'id': certification.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('certification_edit', { 'id': certification.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('certification_new') }}">Create a new certification</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+languages_index:
+    path:     /
+    defaults: { _controller: "AppFreelancerBundle:Languages:index" }
+    methods:  GET
+
+languages_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppFreelancerBundle:Languages:show" }
+    methods:  GET
+
+languages_new:
+    path:     /new
+    defaults: { _controller: "AppFreelancerBundle:Languages:new" }
+    methods:  [GET, POST]
+
+languages_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppFreelancerBundle:Languages:edit" }
+    methods:  [GET, POST]
+
+languages_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppFreelancerBundle:Languages:delete" }
+    methods:  DELETE

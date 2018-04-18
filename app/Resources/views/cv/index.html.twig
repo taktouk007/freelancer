@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cvs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Degree</th>
+                <th>Experiences</th>
+                <th>Hourlyrate</th>
+                <th>Totalearned</th>
+                <th>Nbofjob</th>
+                <th>Profilelink</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cv in cvs %}
+            <tr>
+                <td><a href="{{ path('cv_show', { 'id': cv.id }) }}">{{ cv.id }}</a></td>
+                <td>{{ cv.title }}</td>
+                <td>{{ cv.description }}</td>
+                <td>{{ cv.degree }}</td>
+                <td>{{ cv.experiences }}</td>
+                <td>{{ cv.hourlyRate }}</td>
+                <td>{{ cv.totalEarned }}</td>
+                <td>{{ cv.nbOfJob }}</td>
+                <td>{{ cv.profileLink }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cv_show', { 'id': cv.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cv_edit', { 'id': cv.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cv_new') }}">Create a new cv</a>
+        </li>
+    </ul>
+{% endblock %}

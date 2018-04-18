@@ -1,0 +1,23 @@
+app_freelancer_user:
+    resource: "@AppFreelancerBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+app_freelancer_homepage:
+    path:     /
+    defaults: { _controller: AppFreelancerBundle:Default:index }
+
+app_freelancer_cv:
+    resource: "@AppFreelancerBundle/Resources/config/routing/cv.yml"
+    prefix:   /cv
+
+app_freelancer_languages:
+    resource: "@AppFreelancerBundle/Resources/config/routing/languages.yml"
+    prefix:   /languages
+
+app_freelancer_skills:
+    resource: "@AppFreelancerBundle/Resources/config/routing/skills.yml"
+    prefix:   /skills
+
+app_freelancer_certification:
+    resource: "@AppFreelancerBundle/Resources/config/routing/certification.yml"
+    prefix:   /certification
