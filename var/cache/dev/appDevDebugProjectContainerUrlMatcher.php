@@ -107,6 +107,379 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/freelancer')) {
+            if (0 === strpos($pathinfo, '/freelancer/user')) {
+                // user_index
+                if ('/freelancer/user' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\UserController::indexAction',  '_route' => 'user_index',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_user_index;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'user_index'));
+                    }
+
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_user_index;
+                    }
+
+                    return $ret;
+                }
+                not_user_index:
+
+                // user_show
+                if (preg_match('#^/freelancer/user/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'user_show')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\UserController::showAction',));
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_user_show;
+                    }
+
+                    return $ret;
+                }
+                not_user_show:
+
+                // user_new
+                if ('/freelancer/user/new' === $pathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\UserController::newAction',  '_route' => 'user_new',);
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_user_new;
+                    }
+
+                    return $ret;
+                }
+                not_user_new:
+
+                // user_edit
+                if (preg_match('#^/freelancer/user/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'user_edit')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\UserController::editAction',));
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_user_edit;
+                    }
+
+                    return $ret;
+                }
+                not_user_edit:
+
+                // user_delete
+                if (preg_match('#^/freelancer/user/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'user_delete')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\UserController::deleteAction',));
+                    if (!in_array($requestMethod, array('DELETE'))) {
+                        $allow = array_merge($allow, array('DELETE'));
+                        goto not_user_delete;
+                    }
+
+                    return $ret;
+                }
+                not_user_delete:
+
+            }
+
+            // app_freelancer_homepage
+            if ('/freelancer' === $trimmedPathinfo) {
+                $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\DefaultController::indexAction',  '_route' => 'app_freelancer_homepage',);
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif ('GET' !== $canonicalMethod) {
+                    goto not_app_freelancer_homepage;
+                } else {
+                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'app_freelancer_homepage'));
+                }
+
+                return $ret;
+            }
+            not_app_freelancer_homepage:
+
+            if (0 === strpos($pathinfo, '/freelancer/cv')) {
+                // cv_index
+                if ('/freelancer/cv' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CvController::indexAction',  '_route' => 'cv_index',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_cv_index;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'cv_index'));
+                    }
+
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_cv_index;
+                    }
+
+                    return $ret;
+                }
+                not_cv_index:
+
+                // cv_show
+                if (preg_match('#^/freelancer/cv/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'cv_show')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CvController::showAction',));
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_cv_show;
+                    }
+
+                    return $ret;
+                }
+                not_cv_show:
+
+                // cv_new
+                if ('/freelancer/cv/new' === $pathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CvController::newAction',  '_route' => 'cv_new',);
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_cv_new;
+                    }
+
+                    return $ret;
+                }
+                not_cv_new:
+
+                // cv_edit
+                if (preg_match('#^/freelancer/cv/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'cv_edit')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CvController::editAction',));
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_cv_edit;
+                    }
+
+                    return $ret;
+                }
+                not_cv_edit:
+
+                // cv_delete
+                if (preg_match('#^/freelancer/cv/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'cv_delete')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CvController::deleteAction',));
+                    if (!in_array($requestMethod, array('DELETE'))) {
+                        $allow = array_merge($allow, array('DELETE'));
+                        goto not_cv_delete;
+                    }
+
+                    return $ret;
+                }
+                not_cv_delete:
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/freelancer/certification')) {
+                // certification_index
+                if ('/freelancer/certification' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CertificationController::indexAction',  '_route' => 'certification_index',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_certification_index;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'certification_index'));
+                    }
+
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_certification_index;
+                    }
+
+                    return $ret;
+                }
+                not_certification_index:
+
+                // certification_show
+                if (preg_match('#^/freelancer/certification/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'certification_show')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CertificationController::showAction',));
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_certification_show;
+                    }
+
+                    return $ret;
+                }
+                not_certification_show:
+
+                // certification_new
+                if ('/freelancer/certification/new' === $pathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CertificationController::newAction',  '_route' => 'certification_new',);
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_certification_new;
+                    }
+
+                    return $ret;
+                }
+                not_certification_new:
+
+                // certification_edit
+                if (preg_match('#^/freelancer/certification/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'certification_edit')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CertificationController::editAction',));
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_certification_edit;
+                    }
+
+                    return $ret;
+                }
+                not_certification_edit:
+
+                // certification_delete
+                if (preg_match('#^/freelancer/certification/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'certification_delete')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\CertificationController::deleteAction',));
+                    if (!in_array($requestMethod, array('DELETE'))) {
+                        $allow = array_merge($allow, array('DELETE'));
+                        goto not_certification_delete;
+                    }
+
+                    return $ret;
+                }
+                not_certification_delete:
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/freelancer/languages')) {
+                // languages_index
+                if ('/freelancer/languages' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\LanguagesController::indexAction',  '_route' => 'languages_index',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_languages_index;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'languages_index'));
+                    }
+
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_languages_index;
+                    }
+
+                    return $ret;
+                }
+                not_languages_index:
+
+                // languages_show
+                if (preg_match('#^/freelancer/languages/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'languages_show')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\LanguagesController::showAction',));
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_languages_show;
+                    }
+
+                    return $ret;
+                }
+                not_languages_show:
+
+                // languages_new
+                if ('/freelancer/languages/new' === $pathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\LanguagesController::newAction',  '_route' => 'languages_new',);
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_languages_new;
+                    }
+
+                    return $ret;
+                }
+                not_languages_new:
+
+                // languages_edit
+                if (preg_match('#^/freelancer/languages/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'languages_edit')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\LanguagesController::editAction',));
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_languages_edit;
+                    }
+
+                    return $ret;
+                }
+                not_languages_edit:
+
+                // languages_delete
+                if (preg_match('#^/freelancer/languages/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'languages_delete')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\LanguagesController::deleteAction',));
+                    if (!in_array($requestMethod, array('DELETE'))) {
+                        $allow = array_merge($allow, array('DELETE'));
+                        goto not_languages_delete;
+                    }
+
+                    return $ret;
+                }
+                not_languages_delete:
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/freelancer/skills')) {
+                // skills_index
+                if ('/freelancer/skills' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\SkillsController::indexAction',  '_route' => 'skills_index',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_skills_index;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'skills_index'));
+                    }
+
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_skills_index;
+                    }
+
+                    return $ret;
+                }
+                not_skills_index:
+
+                // skills_show
+                if (preg_match('#^/freelancer/skills/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'skills_show')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\SkillsController::showAction',));
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_skills_show;
+                    }
+
+                    return $ret;
+                }
+                not_skills_show:
+
+                // skills_new
+                if ('/freelancer/skills/new' === $pathinfo) {
+                    $ret = array (  '_controller' => 'App\\FreelancerBundle\\Controller\\SkillsController::newAction',  '_route' => 'skills_new',);
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_skills_new;
+                    }
+
+                    return $ret;
+                }
+                not_skills_new:
+
+                // skills_edit
+                if (preg_match('#^/freelancer/skills/(?P<id>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'skills_edit')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\SkillsController::editAction',));
+                    if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                        $allow = array_merge($allow, array('GET', 'POST'));
+                        goto not_skills_edit;
+                    }
+
+                    return $ret;
+                }
+                not_skills_edit:
+
+                // skills_delete
+                if (preg_match('#^/freelancer/skills/(?P<id>[^/]++)/delete$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'skills_delete')), array (  '_controller' => 'App\\FreelancerBundle\\Controller\\SkillsController::deleteAction',));
+                    if (!in_array($requestMethod, array('DELETE'))) {
+                        $allow = array_merge($allow, array('DELETE'));
+                        goto not_skills_delete;
+                    }
+
+                    return $ret;
+                }
+                not_skills_delete:
+
+            }
+
+        }
+
         // homepage
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
@@ -121,6 +494,209 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $ret;
         }
         not_homepage:
+
+        if (0 === strpos($pathinfo, '/login')) {
+            // fos_user_security_login
+            if ('/login' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.security.controller:loginAction',  '_route' => 'fos_user_security_login',);
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_fos_user_security_login;
+                }
+
+                return $ret;
+            }
+            not_fos_user_security_login:
+
+            // fos_user_security_check
+            if ('/login_check' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.security.controller:checkAction',  '_route' => 'fos_user_security_check',);
+                if (!in_array($requestMethod, array('POST'))) {
+                    $allow = array_merge($allow, array('POST'));
+                    goto not_fos_user_security_check;
+                }
+
+                return $ret;
+            }
+            not_fos_user_security_check:
+
+        }
+
+        // fos_user_security_logout
+        if ('/logout' === $pathinfo) {
+            $ret = array (  '_controller' => 'fos_user.security.controller:logoutAction',  '_route' => 'fos_user_security_logout',);
+            if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                $allow = array_merge($allow, array('GET', 'POST'));
+                goto not_fos_user_security_logout;
+            }
+
+            return $ret;
+        }
+        not_fos_user_security_logout:
+
+        if (0 === strpos($pathinfo, '/profile')) {
+            // fos_user_profile_show
+            if ('/profile' === $trimmedPathinfo) {
+                $ret = array (  '_controller' => 'fos_user.profile.controller:showAction',  '_route' => 'fos_user_profile_show',);
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif ('GET' !== $canonicalMethod) {
+                    goto not_fos_user_profile_show;
+                } else {
+                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'fos_user_profile_show'));
+                }
+
+                if (!in_array($canonicalMethod, array('GET'))) {
+                    $allow = array_merge($allow, array('GET'));
+                    goto not_fos_user_profile_show;
+                }
+
+                return $ret;
+            }
+            not_fos_user_profile_show:
+
+            // fos_user_profile_edit
+            if ('/profile/edit' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.profile.controller:editAction',  '_route' => 'fos_user_profile_edit',);
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_fos_user_profile_edit;
+                }
+
+                return $ret;
+            }
+            not_fos_user_profile_edit:
+
+            // fos_user_change_password
+            if ('/profile/change-password' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.change_password.controller:changePasswordAction',  '_route' => 'fos_user_change_password',);
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_fos_user_change_password;
+                }
+
+                return $ret;
+            }
+            not_fos_user_change_password:
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/register')) {
+            // fos_user_registration_register
+            if ('/register' === $trimmedPathinfo) {
+                $ret = array (  '_controller' => 'fos_user.registration.controller:registerAction',  '_route' => 'fos_user_registration_register',);
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif ('GET' !== $canonicalMethod) {
+                    goto not_fos_user_registration_register;
+                } else {
+                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'fos_user_registration_register'));
+                }
+
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_fos_user_registration_register;
+                }
+
+                return $ret;
+            }
+            not_fos_user_registration_register:
+
+            // fos_user_registration_check_email
+            if ('/register/check-email' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.registration.controller:checkEmailAction',  '_route' => 'fos_user_registration_check_email',);
+                if (!in_array($canonicalMethod, array('GET'))) {
+                    $allow = array_merge($allow, array('GET'));
+                    goto not_fos_user_registration_check_email;
+                }
+
+                return $ret;
+            }
+            not_fos_user_registration_check_email:
+
+            if (0 === strpos($pathinfo, '/register/confirm')) {
+                // fos_user_registration_confirm
+                if (preg_match('#^/register/confirm/(?P<token>[^/]++)$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_user_registration_confirm')), array (  '_controller' => 'fos_user.registration.controller:confirmAction',));
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_fos_user_registration_confirm;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_registration_confirm:
+
+                // fos_user_registration_confirmed
+                if ('/register/confirmed' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.registration.controller:confirmedAction',  '_route' => 'fos_user_registration_confirmed',);
+                    if (!in_array($canonicalMethod, array('GET'))) {
+                        $allow = array_merge($allow, array('GET'));
+                        goto not_fos_user_registration_confirmed;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_registration_confirmed:
+
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/resetting')) {
+            // fos_user_resetting_request
+            if ('/resetting/request' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.resetting.controller:requestAction',  '_route' => 'fos_user_resetting_request',);
+                if (!in_array($canonicalMethod, array('GET'))) {
+                    $allow = array_merge($allow, array('GET'));
+                    goto not_fos_user_resetting_request;
+                }
+
+                return $ret;
+            }
+            not_fos_user_resetting_request:
+
+            // fos_user_resetting_reset
+            if (0 === strpos($pathinfo, '/resetting/reset') && preg_match('#^/resetting/reset/(?P<token>[^/]++)$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_user_resetting_reset')), array (  '_controller' => 'fos_user.resetting.controller:resetAction',));
+                if (!in_array($canonicalMethod, array('GET', 'POST'))) {
+                    $allow = array_merge($allow, array('GET', 'POST'));
+                    goto not_fos_user_resetting_reset;
+                }
+
+                return $ret;
+            }
+            not_fos_user_resetting_reset:
+
+            // fos_user_resetting_send_email
+            if ('/resetting/send-email' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.resetting.controller:sendEmailAction',  '_route' => 'fos_user_resetting_send_email',);
+                if (!in_array($requestMethod, array('POST'))) {
+                    $allow = array_merge($allow, array('POST'));
+                    goto not_fos_user_resetting_send_email;
+                }
+
+                return $ret;
+            }
+            not_fos_user_resetting_send_email:
+
+            // fos_user_resetting_check_email
+            if ('/resetting/check-email' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.resetting.controller:checkEmailAction',  '_route' => 'fos_user_resetting_check_email',);
+                if (!in_array($canonicalMethod, array('GET'))) {
+                    $allow = array_merge($allow, array('GET'));
+                    goto not_fos_user_resetting_check_email;
+                }
+
+                return $ret;
+            }
+            not_fos_user_resetting_check_email:
+
+        }
+
+        if ('/' === $pathinfo && !$allow) {
+            throw new Symfony\Component\Routing\Exception\NoConfigurationException();
+        }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
