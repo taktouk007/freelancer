@@ -1,0 +1,11 @@
+vendor/
+
+vendor/*
+
+var/cache
+
+var/cache/*
+
+var/logs
+
+var/logs/*
